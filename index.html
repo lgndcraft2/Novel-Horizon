@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="style.css">
+        <style>
+            /* Menu Grid Styles */
+            .menu-section {
+                padding: 4rem 2rem;
+                background: var(--first-color-lighten);
+            }
+
+            .menu-section h2 {
+                text-align: center;
+                margin-bottom: 2rem;
+                color: var(--first-color-dark);
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 2rem;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            @media (min-width: 768px) {
+                .grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (min-width: 1024px) {
+                .grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+
+            .card {
+                background: white;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .card-content {
+                padding: 1.5rem;
+            }
+
+            .card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 0.5rem;
+            }
+
+            .dish-name {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--first-color-dark);
+            }
+
+            .price {
+                color: var(--first-color);
+                font-weight: 600;
+            }
+
+            .description {
+                color: var(--text-color);
+                font-size: 0.875rem;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+            }
+
+            .order-button {
+                display: block;
+                width: 100%;
+                padding: 0.75rem;
+                background-color: var(--first-color);
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+            }
+
+            .order-button:hover {
+                background-color: var(--first-color-dark);
+            }
+
+            .order-button:active {
+                transform: scale(0.98);
+            }
+        </style>
+
+        <title>Menu responsive</title>
+    </head>
+    <body>
+        <header class="header">
+            <a href="#" class="header__logo">NOVEL HORIZON</a>
+
+            <ion-icon name="menu-outline" class="header__toggle" id="nav-toggle"></ion-icon>
+
+            <nav class="nav" id="nav-menu">
+                <div class="nav__content bd-grid">
+
+                    <ion-icon name="close-outline" class="nav__close" id="nav-close"></ion-icon>
+    
+                    <div class="nav__perfil">
+                        <div class="nav__img">
+                            <img src="assets/img/perfil.png" alt="">
+                        </div>
+                        
+                        <div>
+                            <a href="#" class="nav__name">NOVEL HORIZON</a>
+                            <span class="nav__profesion">Web designer</span>
+                        </div>
+                    </div>
+    
+                    <div class="nav__menu">
+                        <ul class="nav__list">
+                            <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                            <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
+                            <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                            <li class="nav__item"><a href="#" class="nav__link">Contact</a></li>
+                        </ul>
+                    </div>
+    
+                    <div class="nav__social">
+                        <a href="#" class="nav__social-icon"><ion-icon name="logo-linkedin"></ion-icon></a>
+                        <a href="#" class="nav__social-icon"><ion-icon name="logo-github"></ion-icon></a>
+                        <a href="#" class="nav__social-icon"><ion-icon name="logo-behance"></ion-icon></a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section id="home" class="hero">
+            <h1>Delicious Meals, Fast Delivery</h1>
+            <p>The fastest food delivery service in Ota!</p>
+            <a href="#menu" class="btn">View Menu</a>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="menu-section">
+            <h2>Our Menu</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="jollof-rice.jpg" alt="Jollof Rice">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="dish-name">Jollof Rice</h3>
+                            <span class="price">₦1,500</span>
+                        </div>
+                        <p class="description">Perfectly seasoned Nigerian jollof rice with authentic smoky flavor</p>
+                        <button class="order-button">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="chicken-suya.jpg" alt="Chicken Suya">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="dish-name">Chicken Suya</h3>
+                            <span class="price">₦2,000</span>
+                        </div>
+                        <p class="description">Grilled chicken skewers marinated in special suya spices</p>
+                        <button class="order-button">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="egusi-soup.jpg" alt="Egusi Soup">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="dish-name">Egusi Soup</h3>
+                            <span class="price">₦1,800</span>
+                        </div>
+                        <p class="description">Rich melon seed soup with assorted meat and vegetables</p>
+                        <button class="order-button">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="/api/placeholder/400/200" alt="Plantain Porridge">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="dish-name">Plantain Porridge</h3>
+                            <span class="price">₦1,200</span>
+                        </div>
+                        <p class="description">Delicious plantain porridge cooked with vegetables and fish</p>
+                        <button class="order-button">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="/api/placeholder/400/200" alt="Pounded Yam">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="dish-name">Pounded Yam</h3>
+                            <span class="price">₦1,000</span>
+                        </div>
+                        <p class="description">Smooth pounded yam served with your choice of soup</p>
+                        <button class="order-button">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="/api/placeholder/400/200" alt="Moin Moin">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="dish-name">Moin Moin</h3>
+                            <span class="price">₦800</span>
+                        </div>
+                        <p class="description">Steamed bean pudding with eggs and fish</p>
+                        <button class="order-button">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About Us</h2>
+            <p>Welcome to Novel Horizon Online Buka & Catering Services, where we serve mouth-watering dishes with fast and reliable delivery.</p>
+        </section>
+
+        <!-- ===== IONICONS ===== -->
+        <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+        <!--===== MAIN JS =====-->
+        <script src="script.js"></script>
+    </body>
+</html>
