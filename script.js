@@ -25,3 +25,40 @@ function linkAction(){
   navMenu.classList.remove('show')
 }
 navLink.forEach(n => n.addEventListener('click', linkAction));
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  emailjs.init("p-tIAps-4lC9Ab4ix");
+  console.log(emailjs);
+
+});
+
+
+function sendMail() {
+  let parms = {
+    name : document.getElementById("name").value,
+    email : document.getElementById("email").value,
+    phone : document.getElementById("phone").value,
+    message : document.getElementById("message").value,
+  }
+    const submitButton = document.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    submitButton.innerHTML = '<div class="spinner"></div>';
+    submitButton.disabled = true;
+
+    emailjs.send('service_7l8ezu9', 'template_hz2gpqy', parms)
+        .then(function() {
+            alert('Message sent successfully!');
+            document.getElementById('contactForm').reset();
+        }, function(error) {
+          console.log(error);
+            alert('Failed to send message. Please try again.');
+        })
+        .finally(function() {
+            // Restore button state
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        });
+
+    }
