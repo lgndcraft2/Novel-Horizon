@@ -773,7 +773,7 @@ img {
 
 .contact-section h2 {
   text-align: center;
-  color: var(--first-color-dark);
+  color: var(--header-color);
   margin-bottom: 2rem;
 }
 

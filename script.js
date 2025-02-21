@@ -28,6 +28,20 @@ navLink.forEach(n => n.addEventListener('click', linkAction));
 
 
 
+window.orderNow = function (meal) {
+  const phoneNumber = "2349074304369"; // Replace with actual number
+  const message = `Hello, I’d like to order ${meal}. Please confirm availability.`;
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, "_blank");
+};
+
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
   emailjs.init("p-tIAps-4lC9Ab4ix");
   console.log(emailjs);
