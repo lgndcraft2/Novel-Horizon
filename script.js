@@ -29,7 +29,7 @@ navLink.forEach(n => n.addEventListener('click', linkAction));
 
 
 function orderNow(meal) {
-  const phoneNumber = "2349074304369"; // Replace with actual number
+  const phoneNumber = "2349074304369";
   const message = `Hello, I’d like to order ${meal}. Please confirm availability.`;
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, "_blank");
