@@ -683,7 +683,7 @@ img {
 }
 
 .order-button:hover {
-  background-color: var(--first-color-dark);
+  background-color: #821c1c;
 }
 
 .order-button:active {
