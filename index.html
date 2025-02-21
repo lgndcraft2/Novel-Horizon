@@ -10,6 +10,8 @@
         <title>NOVEL HORIZON</title>
     </head>
     <body>
+        
+
         <header class="header">
             <a href="#" class="header__logo">NOVEL HORIZON</a>
 
@@ -54,6 +56,46 @@
             <a href="#menu" class="btn">View Menu</a>
         </section>
 
+        <!-- Cart Container -->
+<div class="cart-container" id="cart-container">
+    <!-- Cart Icon for Minimized State -->
+    <div class="cart-icon-container" onclick="toggleCart()">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count-bubble" id="cart-count-bubble">0</span>
+    </div>
+
+    <!-- Cart Header -->
+    <div class="cart-header">
+        <h3 class="cart-title">Shopping Cart</h3>
+        <span id="cart-count">(0 items)</span>
+        <button class="minimize-btn" onclick="toggleCart()">^</button>
+    </div>
+
+    <!-- Cart Content -->
+    <div class="cart-content">
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        
+        <!-- Order Note -->
+        <div class="cart-note">
+            <textarea id="order-note" placeholder="Add note to your order (optional)" rows="2"></textarea>
+        </div>
+
+        <!-- Cart Total -->
+        <div id="cart-total" class="cart-total">
+            Total: ₦0
+        </div>
+
+        <!-- Cart Actions -->
+        <div class="cart-actions">
+            <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+</div>
+    
+
         <!-- Menu Section -->
         <section id="menu" class="menu-section">
             <h2>Our Menu</h2>
@@ -66,10 +108,10 @@
                             <span class="price">₦1,500</span>
                         </div>
                         <p class="description">Perfectly seasoned Nigerian jollof rice with authentic smoky flavor</p>
-                        <button class="order-button" onclick="orderNow('Jollof Rice')">Order Now</button>
+                        <button class="order-button" onclick="addToCart('Jollof Rice', 1500)">Add to Cart</button>
                     </div>
                 </div>
-
+    
                 <div class="card">
                     <img src="chicken-suya.jpg" alt="Chicken Suya">
                     <div class="card-content">
@@ -78,10 +120,10 @@
                             <span class="price">₦2,000</span>
                         </div>
                         <p class="description">Grilled chicken skewers marinated in special suya spices</p>
-                        <button class="order-button" onclick="orderNow('Chicken Suya')">Order Now</button>
+                        <button class="order-button" onclick="addToCart('Chicken Suya', 2000)">Add to Cart</button>
                     </div>
                 </div>
-
+    
                 <div class="card">
                     <img src="egusi-soup.jpg" alt="Egusi Soup">
                     <div class="card-content">
@@ -90,10 +132,10 @@
                             <span class="price">₦1,800</span>
                         </div>
                         <p class="description">Rich melon seed soup with assorted meat and vegetables</p>
-                        <button class="order-button" onclick="orderNow('Egusi Soup')">Order Now</button>
+                        <button class="order-button" onclick="addToCart('Egusi Soup', 1800)">Add to Cart</button>
                     </div>
                 </div>
-
+    
                 <div class="card">
                     <img src="plantain-porridge.jpeg" alt="Plantain Porridge">
                     <div class="card-content">
@@ -102,10 +144,10 @@
                             <span class="price">₦1,200</span>
                         </div>
                         <p class="description">Delicious plantain porridge cooked with vegetables and fish</p>
-                        <button class="order-button" onclick="orderNow('Plantain Porridge')">Order Now</button>
+                        <button class="order-button" onclick="addToCart('Plantain Porridge', 1200)">Add to Cart</button>
                     </div>
                 </div>
-
+    
                 <div class="card">
                     <img src="pounded-yam.jpg" alt="Pounded Yam">
                     <div class="card-content">
@@ -114,10 +156,10 @@
                             <span class="price">₦1,000</span>
                         </div>
                         <p class="description">Smooth pounded yam served with your choice of soup</p>
-                        <button class="order-button" onclick="orderNow('Pounded Yam')">Order Now</button>
+                        <button class="order-button" onclick="addToCart('Pounded Yam', 1000)">Add to Cart</button>
                     </div>
                 </div>
-
+    
                 <div class="card">
                     <img src="moimoi.jpeg" alt="Moin Moin">
                     <div class="card-content">
@@ -126,7 +168,7 @@
                             <span class="price">₦800</span>
                         </div>
                         <p class="description">Steamed bean pudding with eggs and fish</p>
-                        <button class="order-button" onclick="orderNow('Moin-Moin')">Order Now</button>
+                        <button class="order-button" onclick="addToCart('Moin-Moin', 800)">Add to Cart</button>
                     </div>
                 </div>
             </div>
