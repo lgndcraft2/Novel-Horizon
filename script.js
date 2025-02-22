@@ -223,6 +223,75 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.querySelector('.testimonial-track');
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const nextBtn = document.querySelector('.next-btn');
+  const prevBtn = document.querySelector('.prev-btn');
+  const dotsContainer = document.querySelector('.dots-container');
+  
+  let currentIndex = 0;
+  let interval;
+  const slideInterval = 5000; // 5 seconds
+  
+  // Create dots
+  slides.forEach((_, idx) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (idx === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(idx));
+      dotsContainer.appendChild(dot);
+  });
+  
+  const dots = document.querySelectorAll('.dot');
+  
+  function updateDots() {
+      dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === currentIndex);
+      });
+  }
+  
+  function goToSlide(index) {
+      currentIndex = index;
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      updateDots();
+      resetInterval();
+  }
+  
+  function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      goToSlide(currentIndex);
+  }
+  
+  function prevSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      goToSlide(currentIndex);
+  }
+  
+  function resetInterval() {
+      clearInterval(interval);
+      interval = setInterval(nextSlide, slideInterval);
+  }
+  
+  // Event listeners
+  nextBtn.addEventListener('click', () => {
+      nextSlide();
+      resetInterval();
+  });
+  
+  prevBtn.addEventListener('click', () => {
+      prevSlide();
+      resetInterval();
+  });
+  
+  // Start auto-sliding
+  interval = setInterval(nextSlide, slideInterval);
+  
+  // Pause auto-sliding on hover
+  track.addEventListener('mouseenter', () => clearInterval(interval));
+  track.addEventListener('mouseleave', () => interval = setInterval(nextSlide, slideInterval));
+});
+
 
 function sendMail() {
   let parms = {
