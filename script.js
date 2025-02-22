@@ -90,6 +90,7 @@ function clearCart() {
         saveCart();
         showNotification('Cart cleared');
     }
+    toggleCart();
 }
 
 function saveCart() {
