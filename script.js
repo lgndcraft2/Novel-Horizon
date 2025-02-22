@@ -103,6 +103,9 @@ function updateCartDisplay() {
     const cartCountBubble = document.getElementById('cart-count-bubble');
     const cartTotalDiv = document.getElementById('cart-total');
     
+
+
+    
     // Clear current display
     cartItemsDiv.innerHTML = '';
     
