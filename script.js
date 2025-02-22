@@ -98,51 +98,56 @@ function saveCart() {
 }
 
 function updateCartDisplay() {
-    const cartItemsDiv = document.getElementById('cart-items');
-    const cartCountSpan = document.getElementById('cart-count');
-    const cartCountBubble = document.getElementById('cart-count-bubble');
-    const cartTotalDiv = document.getElementById('cart-total');
-    
-
-
-    
-    // Clear current display
-    cartItemsDiv.innerHTML = '';
-    
-    // Calculate totals
-    let totalItems = 0;
-    let totalPrice = 0;
-    
-    // Add each item to the display
-    for (const [dishName, details] of Object.entries(cart)) {
-        totalItems += details.quantity;
-        totalPrice += details.price * details.quantity;
-        
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'cart-item';
-        itemDiv.innerHTML = `
-            <div class="cart-item-info">
-                <div class="cart-item-name">${dishName}</div>
-                <div class="cart-item-price">₦${details.price}</div>
-            </div>
-            <div class="cart-item-quantity">
-                <button class="quantity-btn" onclick="removeFromCart('${dishName}')">-</button>
-                <span>${details.quantity}</span>
-                <button class="quantity-btn" onclick="addToCart('${dishName}', ${details.price})">+</button>
-            </div>
-        `;
-        cartItemsDiv.appendChild(itemDiv);
-    }
-    
-    // Show empty cart message if no items
-    if (totalItems === 0) {
-        cartItemsDiv.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
-    }
-    
-    // Update total items and price
-    cartCountSpan.textContent = `(${totalItems} items)`;
-    cartCountBubble.textContent = totalItems;
-    cartTotalDiv.textContent = `Total: ₦${totalPrice}`;
+  const cartItemsDiv = document.getElementById('cart-items');
+  const cartCountSpan = document.getElementById('cart-count');
+  const cartCountBubble = document.getElementById('cart-count-bubble');
+  const cartTotalDiv = document.getElementById('cart-total');
+  const cartContainer = document.getElementById('cart-container');
+  
+  // Clear current display
+  cartItemsDiv.innerHTML = '';
+  
+  // Calculate totals
+  let totalItems = 0;
+  let totalPrice = 0;
+  
+  // Add each item to the display
+  for (const [dishName, details] of Object.entries(cart)) {
+      totalItems += details.quantity;
+      totalPrice += details.price * details.quantity;
+      
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'cart-item';
+      itemDiv.innerHTML = `
+          <div class="cart-item-info">
+              <div class="cart-item-name">${dishName}</div>
+              <div class="cart-item-price">₦${details.price}</div>
+          </div>
+          <div class="cart-item-quantity">
+              <button class="quantity-btn" onclick="removeFromCart('${dishName}')">-</button>
+              <span>${details.quantity}</span>
+              <button class="quantity-btn" onclick="addToCart('${dishName}', ${details.price})">+</button>
+          </div>
+      `;
+      cartItemsDiv.appendChild(itemDiv);
+  }
+  
+  // Show/hide cart based on items
+  if (totalItems > 0) {
+      cartContainer.classList.remove('hidden');
+  } else {
+      cartContainer.classList.add('hidden');
+  }
+  
+  // Show empty cart message if no items
+  if (totalItems === 0) {
+      cartItemsDiv.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+  }
+  
+  // Update total items and price
+  cartCountSpan.textContent = `(${totalItems} items)`;
+  cartCountBubble.textContent = totalItems;
+  cartTotalDiv.textContent = `Total: ₦${totalPrice}`;
 }
 
 // Handle order note changes
@@ -165,7 +170,7 @@ function checkout() {
         sum + (details.price * details.quantity), 0
     );
     
-    const message = `Order Summary:\n\n${orderDetails}\n\nTotal: ₦${total}${orderNote ? '\n\nNote: ' + orderNote : ''}`;
+    const message = `Order Summary:\n\n${orderDetails}\n\nTotal: ₦${total}${orderNote ? '\n\nNote: ' + orderNote : ''}\nAdress is: `;
     
     // Here you could integrate with a payment gateway or send to your backend
     const phoneNumber = "2349074304369";

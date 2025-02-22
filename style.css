@@ -293,7 +293,7 @@ img {
   --small-font-size: .813rem;
 
   /*===== z index =====*/
-  --z-fixed: 100;
+  --z-fixed: 1001;
 }
 
 @media screen and (min-width: 768px) {
@@ -947,6 +947,9 @@ img {
 
 .cart-items::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+.cart-container.hidden {
+  display: none;
 }
 
 
