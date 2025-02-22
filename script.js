@@ -77,6 +77,7 @@ function removeFromCart(dishName) {
         }
         saveCart();
     }
+    toggleCart();
 }
 
 function clearCart() {
