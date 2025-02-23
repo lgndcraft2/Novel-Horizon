@@ -234,54 +234,120 @@ document.addEventListener('DOMContentLoaded', function() {
   let interval;
   const slideInterval = 5000; // 5 seconds
   
+  // Touch handling variables
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let isDragging = false;
+  let startTranslate = 0;
+  
   // Create dots
   slides.forEach((_, idx) => {
-      const dot = document.createElement('div');
-      dot.classList.add('dot');
-      if (idx === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => goToSlide(idx));
-      dotsContainer.appendChild(dot);
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (idx === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(idx));
+    dotsContainer.appendChild(dot);
   });
   
   const dots = document.querySelectorAll('.dot');
   
   function updateDots() {
-      dots.forEach((dot, idx) => {
-          dot.classList.toggle('active', idx === currentIndex);
-      });
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentIndex);
+    });
   }
   
   function goToSlide(index) {
-      currentIndex = index;
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      updateDots();
-      resetInterval();
+    currentIndex = index;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    updateDots();
+    resetInterval();
   }
   
   function nextSlide() {
-      currentIndex = (currentIndex + 1) % slides.length;
-      goToSlide(currentIndex);
+    currentIndex = (currentIndex + 1) % slides.length;
+    goToSlide(currentIndex);
   }
   
   function prevSlide() {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      goToSlide(currentIndex);
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    goToSlide(currentIndex);
   }
   
   function resetInterval() {
-      clearInterval(interval);
-      interval = setInterval(nextSlide, slideInterval);
+    clearInterval(interval);
+    interval = setInterval(nextSlide, slideInterval);
   }
   
-  // Event listeners
+  // Touch event handlers
+  function handleTouchStart(e) {
+    isDragging = true;
+    touchStartX = e.touches[0].clientX;
+    startTranslate = -currentIndex * 100;
+    
+    // Pause transitions during drag
+    track.style.transition = 'none';
+    
+    // Clear auto-slide interval during touch
+    clearInterval(interval);
+  }
+  
+  function handleTouchMove(e) {
+    if (!isDragging) return;
+    
+    touchEndX = e.touches[0].clientX;
+    const diff = touchEndX - touchStartX;
+    const newTranslate = startTranslate + (diff / track.offsetWidth * 100);
+    
+    // Add resistance at the edges
+    if (currentIndex === 0 && diff > 0 || 
+        currentIndex === slides.length - 1 && diff < 0) {
+      track.style.transform = `translateX(${newTranslate / 3}%)`;
+    } else {
+      track.style.transform = `translateX(${newTranslate}%)`;
+    }
+  }
+  
+  function handleTouchEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    
+    // Restore transitions
+    track.style.transition = 'transform 0.3s ease';
+    
+    const diff = touchEndX - touchStartX;
+    const threshold = track.offsetWidth * 0.2; // 20% of slide width
+    
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0 && currentIndex > 0) {
+        prevSlide();
+      } else if (diff < 0 && currentIndex < slides.length - 1) {
+        nextSlide();
+      } else {
+        goToSlide(currentIndex); // Reset to current slide
+      }
+    } else {
+      goToSlide(currentIndex); // Reset to current slide if swipe wasn't far enough
+    }
+    
+    // Restart auto-slide interval
+    resetInterval();
+  }
+  
+  // Add touch event listeners
+  track.addEventListener('touchstart', handleTouchStart);
+  track.addEventListener('touchmove', handleTouchMove);
+  track.addEventListener('touchend', handleTouchEnd);
+  
+  // Existing click event listeners
   nextBtn.addEventListener('click', () => {
-      nextSlide();
-      resetInterval();
+    nextSlide();
+    resetInterval();
   });
   
   prevBtn.addEventListener('click', () => {
-      prevSlide();
-      resetInterval();
+    prevSlide();
+    resetInterval();
   });
   
   // Start auto-sliding

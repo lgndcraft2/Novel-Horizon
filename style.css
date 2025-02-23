@@ -1159,6 +1159,7 @@ img {
 .testimonial-section {
   padding: 4rem 2rem;
   background-color: #f8f8f8;
+  min-height: 80vh;
 }
 
 .testimonial-container {
