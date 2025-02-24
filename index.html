@@ -58,43 +58,44 @@
         </section>
 
         <!-- Cart Container -->
-<div class="cart-container minimized hidden" id="cart-container">
-    <!-- Cart Icon for Minimized State -->
-    <div class="cart-icon-container" onclick="toggleCart()">
-        <span class="cart-icon">🛒</span>
-        <span class="cart-count-bubble" id="cart-count-bubble">0</span>
-    </div>
-
-    <!-- Cart Header -->
-    <div class="cart-header">
-        <h3 class="cart-title">Shopping Cart</h3>
-        <span id="cart-count">(0 items)</span>
-        <button class="minimize-btn" onclick="toggleCart()">x</button>
-    </div>
-
-    <!-- Cart Content -->
-    <div class="cart-content">
-        <div id="cart-items" class="cart-items">
-            <!-- Cart items will be dynamically added here -->
-        </div>
+        <div class="cart-container minimized hidden" id="cart-container">
+            <!-- Cart Icon for Minimized State -->
+            <div class="cart-icon-container" onclick="toggleCart()">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count-bubble" id="cart-count-bubble">0</span>
+            </div>
         
-        <!-- Order Note -->
-        <div class="cart-note">
-            <textarea id="order-note" placeholder="Add note to your order (optional)" rows="2"></textarea>
+            <!-- Cart Header -->
+            <div class="cart-header">
+                <h3 class="cart-title">Shopping Cart</h3>
+                <span id="cart-count">(0 items)</span>
+                <button class="minimize-btn" onclick="toggleCart()">x</button>
+            </div>
+        
+            <!-- Cart Content -->
+            <div class="cart-content">
+                <div id="cart-items" class="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                
+                <!-- Delivery Address (formerly Order Note) -->
+                <div class="cart-note">
+                    <label for="order-note">Delivery Address <span class="required">*</span></label>
+                    <textarea id="order-note" placeholder="Enter your delivery address" rows="2"></textarea>
+                </div>
+        
+                <!-- Cart Total -->
+                <div id="cart-total" class="cart-total">
+                    Total: ₦0
+                </div>
+        
+                <!-- Cart Actions -->
+                <div class="cart-actions">
+                    <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+                    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+                </div>
+            </div>
         </div>
-
-        <!-- Cart Total -->
-        <div id="cart-total" class="cart-total">
-            Total: ₦0
-        </div>
-
-        <!-- Cart Actions -->
-        <div class="cart-actions">
-            <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
-            <button class="checkout-btn" onclick="checkout()">Checkout</button>
-        </div>
-    </div>
-</div>
     
 
         <!-- Menu Section -->
@@ -292,7 +293,7 @@
                 </div>
         
                 <div class="contact-form">
-                    <form id="contactForm" onsubmit="sendMail()">
+                    <form id="contactForm" onsubmit="sendMail()" method="post">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required placeholder="Enter your name">

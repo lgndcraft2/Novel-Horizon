@@ -845,6 +845,7 @@ img {
   margin-bottom: 1rem;
 }
 
+
 .cart-note textarea {
   width: 100%;
   padding: 0.75rem;
@@ -955,6 +956,7 @@ img {
 .cart-container.hidden {
   display: none;
 }
+
 
 
 #about-us {
@@ -1159,7 +1161,6 @@ img {
 .testimonial-section {
   padding: 4rem 2rem;
   background-color: #f8f8f8;
-  min-height: 80vh;
 }
 
 .testimonial-container {
