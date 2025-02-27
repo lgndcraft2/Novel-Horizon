@@ -234,7 +234,6 @@ function showNotification(message) {
 
 document.addEventListener("DOMContentLoaded", function() {
   emailjs.init("p-tIAps-4lC9Ab4ix");
-  console.log(emailjs);
 
 });
 
