@@ -580,7 +580,7 @@ img {
   left: 0;
   right: 0;
   height: 100px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background: linear-gradient(to top, rgba(78, 52, 31, 0.9), rgba(58, 38, 22, 0));
   z-index: 1;
 }
 
@@ -612,7 +612,7 @@ img {
 
 .hero .btn {
   display: inline-block;
-  background-color: #FF6B00;
+  background-color: var(--header-color);
   color: white;
   padding: 15px 40px;
   border-radius: 50px;
@@ -626,9 +626,9 @@ img {
 
 .hero .btn:hover {
   background-color: transparent;
-  border-color: #FF6B00;
+  border-color: var(--header-color);
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.6);
+  box-shadow: 0 6px 20px var(--header-color);
 }
 
 .hero .secondary-btn {
@@ -651,20 +651,6 @@ img {
   transform: translateY(-3px);
 }
 
-.hero-badge {
-  position: absolute;
-  top: 100px;
-  right: 50px;
-  background-color: #FF6B00;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 50px;
-  font-weight: 600;
-  transform: rotate(15deg);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  animation: pulse 2s infinite;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
@@ -676,6 +662,8 @@ img {
   100% { transform: rotate(15deg) scale(1); }
 }
 
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .hero h1 {
@@ -684,13 +672,6 @@ img {
   
   .hero p {
       font-size: 1rem;
-  }
-  
-  .hero-badge {
-      top: 20px;
-      right: 20px;
-      padding: 8px 15px;
-      font-size: 0.9rem;
   }
 }
 
