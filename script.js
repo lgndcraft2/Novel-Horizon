@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (Math.abs(diff) > threshold) {
       if (diff > 0 && currentIndex > 0) {
         prevSlide();
-      } else if (diff < 0 && currentIndex < slides.length - 1) {
+      } else if (diff < 0) {
         nextSlide();
       } else {
         goToSlide(currentIndex); // Reset to current slide
