@@ -612,6 +612,7 @@ img {
   background-color: var(--header-color);
   color: white;
   padding: 15px 40px;
+  width: 300px;
   border-radius: 50px;
   font-size: 1.125rem;
   font-weight: 600;
